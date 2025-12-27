@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terapia - Therapy App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧠 Terapia</h1>
+            <p>Connect with your therapist</p>
+        </div>
+        
+        <div class="login-card">
+            <h2>Welcome</h2>
+            <form action="/login" method="POST">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" required placeholder="Enter your name">
+                </div>
+                
+                <div class="form-group">
+                    <label>I am a:</label>
+                    <div class="role-buttons">
+                        <label class="role-option">
+                            <input type="radio" name="role" value="patient" required>
+                            <span>Patient</span>
+                        </label>
+                        <label class="role-option">
+                            <input type="radio" name="role" value="therapist" required>
+                            <span>Therapist</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Continue</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

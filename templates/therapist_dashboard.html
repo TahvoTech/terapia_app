@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Therapist Dashboard - Terapia</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧠 Terapia</h1>
+            <div class="user-info">
+                <span>Dr. {{ name }}</span>
+                <a href="/logout" class="btn btn-secondary">Logout</a>
+            </div>
+        </div>
+        
+        <div class="dashboard">
+            <h2>My Appointments</h2>
+            
+            {% if appointments %}
+            <div class="appointments-list">
+                {% for apt in appointments %}
+                <div class="appointment-card">
+                    <div class="apt-info">
+                        <h3>{{ apt.patient }}</h3>
+                        <p>📅 {{ apt.date }} at {{ apt.time }}</p>
+                    </div>
+                    <div class="apt-actions">
+                        <span class="status status-{{ apt.status }}">{{ apt.status }}</span>
+                        <form action="/therapist/update/{{ apt.id }}" method="POST" style="display: inline;">
+                            <select name="status" onchange="this.form.submit()">
+                                <option value="">Update status</option>
+                                <option value="scheduled">Scheduled</option>
+                                <option value="completed">Completed</option>
+                                <option value="cancelled">Cancelled</option>
+                            </select>
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p class="empty-state">No appointments scheduled yet.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
